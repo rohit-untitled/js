@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String Manipulation Functions</title>
+  <script>
+    function capitalizeFirstLetters(str) {
+      return str.replace(/\b\w/g, match => match.toUpperCase());
+    }
+
+    function insertString(originalStr, strToInsert, position) {
+      return originalStr.slice(0, position) + strToInsert + originalStr.slice(position);
+    }
+
+    function isString(input) {
+      return typeof input === "string";
+    }
+
+    function splitStringIntoWords(str) {
+      return str.split(" ");
+    }
+
+    function capitalizeAndDisplay() {
+      const inputStr = document.getElementById('inputStr').value;
+      const capitalizedStr = capitalizeFirstLetters(inputStr);
+      document.getElementById('capitalizedStr').textContent = capitalizedStr;
+    }
+
+    function insertAndDisplay() {
+      const originalString = document.getElementById('originalString').value;
+      const stringToInsert = document.getElementById('stringToInsert').value;
+      const position = parseInt(document.getElementById('position').value);
+      const insertedString = insertString(originalString, stringToInsert, position);
+      document.getElementById('insertedString').textContent = insertedString;
+    }
+
+    function checkString() {
+      const input = document.getElementById('input').value;
+      const isStringResult = isString(input);
+      document.getElementById('isStringResult').textContent = isStringResult ? "Input is a string." : "Input is not a string.";
+    }
+
+    function splitAndDisplay() {
+      const inputString = document.getElementById('inputString').value;
+      const wordsArray = splitStringIntoWords(inputString);
+      document.getElementById('wordsArray').textContent = JSON.stringify(wordsArray);
+    }
+  </script>
+</head>
+<body>
+  <h1>String Manipulation Functions</h1>
+  
+  <h2>Capitalize First Letters</h2>
+  <label for="inputStr">Enter a string:</label>
+  <input type="text" id="inputStr">
+  <button onclick="capitalizeAndDisplay()">Capitalize</button>
+  <div id="capitalizedStr"></div>
+
+  <h2>Insert String at Position</h2>
+  <label for="originalString">Enter the original string:</label>
+  <input type="text" id="originalString">
+  <label for="stringToInsert">Enter the string to insert:</label>
+  <input type="text" id="stringToInsert">
+  <label for="position">Enter the position:</label>
+  <input type="number" id="position">
+  <button onclick="insertAndDisplay()">Insert</button>
+  <div id="insertedString"></div>
+
+  <h2>Check String</h2>
+  <label for="input">Enter an input:</label>
+  <input type="text" id="input">
+  <button onclick="checkString()">Check</button>
+  <div id="isStringResult"></div>
+
+  <h2>Split String into Words</h2>
+  <label for="inputString">Enter a string:</label>
+  <input type="text" id="inputString">
+  <button onclick="splitAndDisplay()">Split</button>
+  <div id="wordsArray"></div>
+</body>
+</html>

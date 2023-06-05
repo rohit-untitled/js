@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Test</title>
+  <script>
+    function numTest(number) {
+      return new Promise(function(resolve, reject) {
+        if (number < 20) {
+          resolve(number + ' is less than 20.');
+        } else if (number > 20) {
+          resolve(number + ' is greater than 20.');
+        } else {
+          reject(number + ' is equal to 20.');
+        }
+      });
+    }
+
+    function testNumber() {
+      var input = document.getElementById('numberInput').value;
+      var resultDiv = document.getElementById('result');
+
+      numTest(Number(input))
+        .then(function(result) {
+          resultDiv.innerHTML = result;
+        })
+        .catch(function(error) {
+          resultDiv.innerHTML = error;
+        });
+    }
+  </script>
+</head>
+<body>
+  <h1>Number Test</h1>
+  <label for="numberInput">Enter a number:</label>
+  <input type="number" id="numberInput">
+  <button onclick="testNumber()">Test</button>
+  <div id="result"></div>
+</body>
+</html>

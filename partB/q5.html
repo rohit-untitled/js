@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flight and Hotel Booking</title>
+</head>
+<body>
+  <h1>Flight and Hotel Booking</h1>
+  
+  <button onclick="bookFlightAndHotel()">Book Flight and Hotel</button>
+
+  <div id="bookingStatus"></div>
+
+  <script>
+    function bookFlight() {
+      return new Promise((resolve, reject) => {
+        // Simulating flight booking process
+        setTimeout(() => {
+          const isSuccess = Math.random() >= 0.5; // Randomly resolve or reject the promise
+          if (isSuccess) {
+            resolve("Flight booked successfully");
+          } else {
+            reject("Flight booking failed");
+          }
+        }, 2000);
+      });
+    }
+
+    function bookHotel() {
+      return new Promise((resolve, reject) => {
+        // Simulating hotel booking process
+        setTimeout(() => {
+          const isSuccess = Math.random() >= 0.5; // Randomly resolve or reject the promise
+          if (isSuccess) {
+            resolve("Hotel booked successfully");
+          } else {
+            reject("Hotel booking failed");
+          }
+        }, 2000);
+      });
+    }
+
+    function bookFlightAndHotel() {
+      const bookingStatusElement = document.getElementById("bookingStatus");
+
+      bookingStatusElement.textContent = "Booking in progress...";
+
+      bookFlight()
+        .then(flightMessage => {
+          bookingStatusElement.textContent = flightMessage;
+          return bookHotel();
+        })
+        .then(hotelMessage => {
+          bookingStatusElement.textContent += "\n" + hotelMessage;
+        })
+        .catch(error => {
+          bookingStatusElement.textContent = "Error: " + error;
+        });
+    }
+  </script>
+</body>
+</html>

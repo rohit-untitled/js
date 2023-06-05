@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function jumpSearch(arr, x) {
+    let n = arr.length;
+    let step = Math.floor(Math.sqrt(n));
+    let prev = 0;
+    while (arr[Math.min(step, n)-1] < x) {
+        prev = step;
+        step += Math.floor(Math.sqrt(n));
+        if (prev >= n)
+            return -1;
+    }
+    while (arr[prev] < x) {
+        prev++;
+        if (prev == Math.min(step, n))
+            return -1;
+    }
+    if (arr[prev] == x)
+        return prev;
+    return -1;
+}
+
+let key = prompt("Enter the key to search for:");
+let arr = prompt("Enter a list of numbers separated by commas:").split(",").map(Number);
+let index = jumpSearch(arr, key);
+
+if (index != -1) {
+    alert("The key " + key + " was found at index " + index);
+} else {
+    alert("The key " + key + " was not found");
+}
+</script>
+</html>

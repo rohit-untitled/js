@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sort String Alphabetically</title>
+  <script>
+    function sortStringAlphabetically(str) {
+      return str.split('').sort().join('');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the necessary elements
+      const input = document.getElementById('inputString');
+      const button = document.getElementById('sortButton');
+      const result = document.getElementById('result');
+    
+      // Add click event listener to the button
+      button.addEventListener('click', function() {
+        const string = input.value;
+        const sortedString = sortStringAlphabetically(string);
+        result.textContent = sortedString;
+      });
+    });
+  </script>
+</head>
+<body>
+  <input type="text" id="inputString" placeholder="Enter a string">
+  <button id="sortButton">Sort</button>
+  <div id="result"></div>
+</body>
+</html>
